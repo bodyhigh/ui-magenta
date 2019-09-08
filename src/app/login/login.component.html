@@ -1,0 +1,18 @@
+<div id="login-container">
+    <form [formGroup]="loginForm" (submit)="submit()">
+        <mat-form-field>
+        <input matInput placeholder="Email" formControlName="email" type="email">
+        <mat-error *ngIf="formErrors.email">{{ formErrors.email }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+        <input matInput placeholder="Password" formControlName="password" type="password">
+        <mat-error *ngIf="formErrors.password">{{ formErrors.password }}</mat-error>
+        </mat-form-field>
+
+        <div class="button-row">
+        <button mat-raised-button (click)="cancel()" type="button">Cancel</button>
+        <button mat-raised-button color="primary" type="submit">Login</button>
+        </div>
+    </form>
+</div>

@@ -15,7 +15,7 @@ const routes: Routes = [{
   path: "register",
   component: RegisterUserComponent
 }, {
-  path: "foo",
+  path: "foo_mod",
   component: RegisterUserComponent
 }];
 

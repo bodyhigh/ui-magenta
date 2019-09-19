@@ -7,9 +7,13 @@
       </a>
       
       <ng-container *ngIf="authService.isLoggedIn()">
-        <a mat-list-item routerLink="profile" (click)="start.close()">
+        <a mat-list-item routerLink="/profile" (click)="start.close()">
           <mat-icon>face</mat-icon>
           <span>Profile</span>
+        </a>
+        <a mat-list-item routerLink="/admin" (click)="start.close()">
+          <mat-icon>settings_applications</mat-icon>
+          <span>Admin</span>
         </a>
         <a mat-list-item (click)="logout()">
           <mat-icon>person_outline</mat-icon>

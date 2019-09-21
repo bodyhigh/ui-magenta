@@ -11,10 +11,10 @@ export interface ILoginFormData {
     password: string;
 }
 
-export interface ITokenUser {
-    firstName: string;
-    lastName: string;
-    roles: string[];
-    token: string;
-    userId: string;
-}
+// export interface ITokenUser {
+//     firstName: string;
+//     lastName: string;
+//     roles: string[];
+//     token: string;
+//     userId: string;
+// }

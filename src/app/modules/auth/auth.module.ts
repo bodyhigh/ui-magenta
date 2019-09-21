@@ -5,7 +5,6 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 
-
 @NgModule({
   declarations: [RegisterComponent, ProfileComponent],
   imports: [

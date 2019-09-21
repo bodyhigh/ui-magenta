@@ -18,9 +18,9 @@ export class AuthService {
   private localStorageUserKey: string;
   private tokenUser: ITokenUser;
 
-  constructor(private httpClient: HttpClient, 
-    private jwtHelper: JwtHelperService, 
-    private logger: LoggerService) { 
+  constructor(private httpClient: HttpClient,
+              private jwtHelper: JwtHelperService,
+              private logger: LoggerService) {
     this.restApiEndpoint = `${environment.restApiEndpoint}/auth`;
     this.jwtTokenName = environment.jwtTokenKey;
     this.localStorageUserKey = environment.localStorageUserKey;
@@ -36,7 +36,7 @@ export class AuthService {
           this.logger.log(error, 'AuthService.register');
           return throwError(error);
         })
-      )
+      );
   }
 
   login(formData: ILoginFormData): Observable<any> {
@@ -45,11 +45,11 @@ export class AuthService {
       .pipe(
         tap(res => {
           if (res.token && res.success === true) {
-            this.tokenUser = { 
-              firstName: res.firstName, 
-              lastName: res.lastName, 
-              roles: res.roles, 
-              token: res.token, 
+            this.tokenUser = {
+              firstName: res.firstName,
+              lastName: res.lastName,
+              roles: res.roles,
+              token: res.token,
               userId: res.userId };
 
             this.jwtToken = this.tokenUser.token;
@@ -64,9 +64,9 @@ export class AuthService {
         }),
         catchError((err: HttpErrorResponse) => { 
           this.logger.log(err, 'AuthService.login');
-          return throwError(err.error.message)
+          return throwError(err.error.message);
         })
-      )
+      );
   }
 
   logout(): void {
@@ -79,9 +79,11 @@ export class AuthService {
   }
 
   public isInRole(roleName: string): boolean {
-    if (!this.isLoggedIn()) return false;
-    
-    return this.tokenUser.roles.some((role) => role.toLowerCase() == roleName.toLowerCase());
+    if (!this.isLoggedIn()) {
+      return false;
+    }
+
+    return this.tokenUser.roles.some((role) => role.toLowerCase() === roleName.toLowerCase());
   }
 
   public isAdminRole(): boolean {

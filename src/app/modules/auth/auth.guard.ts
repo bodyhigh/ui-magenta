@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, CanActivateChild, CanLoad, Route, UrlSegment, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
+import { CanActivate, CanActivateChild, CanLoad, Route, UrlSegment, ActivatedRouteSnapshot,
+          RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
-import { environment } from 'src/environments/environment.prod';
-import { ITokenUser } from './interfaces/itoken-user';
 
 @Injectable({
   providedIn: 'root'

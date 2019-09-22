@@ -11,7 +11,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 export class UserModelService {
   private restApiEndpoint: string;
 
-  constructor(private httpClient: HttpClient, private jwtHelper: JwtHelperService) { 
+  constructor(private httpClient: HttpClient, private jwtHelper: JwtHelperService) {
     this.restApiEndpoint = `${environment.restApiEndpoint}/user`;
   }
 
@@ -20,7 +20,7 @@ export class UserModelService {
   //   return this.httpClient.post<any>(endpoint, formData)
   //     .pipe(
   //       catchError((error: HttpErrorResponse) => {
-  //         return throwError(`Something bad happened: ${error}`);          
+  //         return throwError(`Something bad happened: ${error}`);
   //       })
   //     )
   // }

@@ -4,9 +4,8 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
-import { IRegistrationFormData, ILoginFormData } from '../interfaces/auth';
-import { ITokenUser } from '../modules/auth/interfaces/itoken-user';
-import { LoggerService } from './logger.service';
+import { ILoginFormData, IRegistrationFormData, ITokenUser } from '../interfaces/';
+import { LoggerService } from '../../../services/logger.service';
 
 @Injectable({
   providedIn: 'root'
@@ -62,7 +61,7 @@ export class AuthService {
         map(res => {
           return { loggedIn: res.success, message: res.message };
         }),
-        catchError((err: HttpErrorResponse) => { 
+        catchError((err: HttpErrorResponse) => {
           this.logger.log(err, 'AuthService.login');
           return throwError(err.error.message);
         })

@@ -13,20 +13,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // Modules
 import { AdminModule } from './modules/admin/admin.module';
 
-// Angular Material Modules
-import { MatButtonModule,
-  MatCardModule,
-  MatFormFieldModule,
-  MatIconModule,
-  MatInputModule,
-  MatListModule,
-  MatMenuModule,
-  MatSidenavModule,
-  MatSnackBarModule,
-  MatToolbarModule
-} from '@angular/material';
+// Common Material Modules
+import { CommonMaterialsModule } from './modules/common-materials/common-materials.module';
+
 import { HomeComponent } from './home/home.component';
 import { AuthModule } from './modules/auth/auth.module';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 /**
  * This method is used to allow case insensitive paths to be used in url paths
@@ -49,7 +41,8 @@ const jwtConfig = {
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -61,18 +54,7 @@ const jwtConfig = {
     AuthModule,
     AppRoutingModule,
     AdminModule,
-
-    // Material
-    MatButtonModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
-    MatListModule,
-    MatMenuModule,
-    MatSidenavModule,
-    MatSnackBarModule,
-    MatToolbarModule
+    CommonMaterialsModule
   ],
   providers: [{
     provide: UrlSerializer,

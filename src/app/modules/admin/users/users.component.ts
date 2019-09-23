@@ -18,6 +18,7 @@ export class UsersComponent implements AfterViewInit {
   public resultsLength = 0;
   public isLoadingResults = true;
   public isRateLimitReached = false;
+  public itemsPerPage = 4;
 
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
@@ -34,14 +35,15 @@ export class UsersComponent implements AfterViewInit {
         startWith({}),
         switchMap(() => {
           this.isLoadingResults = true;
-          return this.userService.list();
+          return this.userService.list(this.itemsPerPage, this.paginator.pageIndex);
         }),
-        map(data => {
+        map(results => {
+          results = JSON.parse(results);
           // Flip flag to show that loading has finished
           this.isLoadingResults = false;
           this.isRateLimitReached = false;
-          this.resultsLength = data.length;          
-          return data;
+          this.resultsLength = results.totalCount;
+          return results.data;
         }),
         catchError(() => {
           this.isLoadingResults = false;

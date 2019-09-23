@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { IUser } from './interfaces/iuser';
 import { ApiBaseService } from './api-base.service';
+import { HttpParams } from '@angular/common/http';
 
 /**
  * API Model for the User class
@@ -22,9 +23,12 @@ export class UserService extends ApiBaseService{
     this.restApiEndpoint = `${environment.restApiEndpoint}/user`;
   }
 
-  list(): Observable<IUser[]> {
+  list(itemsPerPage: number = 0, pageNumber: number = 25): Observable<any> {
     const endpoint = `${this.restApiEndpoint}/`;
-    return this.httpClient.get<any>(endpoint, { });
+    let params = new HttpParams()
+      .set('itemsPerPage', itemsPerPage.toString())
+      .set('pageNumber', pageNumber.toString())
+    return this.httpClient.get<any>(endpoint, { params: params });
   }
 }
 // @Injectable({

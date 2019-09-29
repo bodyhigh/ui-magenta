@@ -21,7 +21,7 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Compiling Angular code for Prod and AOT
-      - ng build --prod=true --aot=true
+      - npm run build-prod
   post_build:
     commands:
       - echo Build completed on `date`

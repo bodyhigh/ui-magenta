@@ -16,10 +16,10 @@ import { CustomValidatorService } from 'src/app/services/custom-validator.servic
 })
 export class RegisterComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
-  private registrationConfirmed = false;
-  private registrationForm: FormGroup;
+  public registrationConfirmed = false;
+  public registrationForm: FormGroup;
   private snackRef: MatSnackBarRef<SimpleSnackBar>;
-  private formErrors = {
+  public formErrors = {
     firstName: '',
     lastName: '',
     email: '',

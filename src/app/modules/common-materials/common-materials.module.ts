@@ -8,9 +8,14 @@ import { MatButtonModule,
   MatInputModule,
   MatListModule,
   MatMenuModule,
+  MatPaginatorModule,
+  MatProgressSpinnerModule,
   MatSidenavModule,
   MatSnackBarModule,
+  MatSortModule,
+  MatTableModule,
   MatToolbarModule
+  
 } from '@angular/material';
 
 
@@ -25,8 +30,12 @@ import { MatButtonModule,
     MatInputModule,
     MatListModule,
     MatMenuModule,
+    MatPaginatorModule,
+    MatProgressSpinnerModule,
     MatSidenavModule,
     MatSnackBarModule,
+    MatSortModule,
+    MatTableModule,
     MatToolbarModule
   ],
   exports: [
@@ -37,8 +46,12 @@ import { MatButtonModule,
     MatInputModule,
     MatListModule,
     MatMenuModule,
+    MatPaginatorModule,
+    MatProgressSpinnerModule,
     MatSidenavModule,
     MatSnackBarModule,
+    MatSortModule,
+    MatTableModule,
     MatToolbarModule
   ]
 })

@@ -1,30 +1,18 @@
-import { Injectable } from '@angular/core';
-import { JwtHelperService } from '@auth0/angular-jwt';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Injectable, Injector } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
-import { ILoginFormData, IRegistrationFormData, ITokenUser } from '../interfaces/';
-import { LoggerService } from '../../../services/logger.service';
+import { ILoginFormData, IRegistrationFormData } from '../interfaces/';
+import { ApiBaseService } from 'src/app/models/api-base.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
-  private restApiEndpoint: string;
-  private jwtTokenName: string;
-  private jwtToken: string;
-  private localStorageUserKey: string;
-  private tokenUser: ITokenUser;
-
-  constructor(private httpClient: HttpClient,
-              private jwtHelper: JwtHelperService,
-              private logger: LoggerService) {
+export class AuthService extends ApiBaseService {
+  constructor(injector: Injector) {
+    super(injector);
     this.restApiEndpoint = `${environment.restApiEndpoint}/auth`;
-    this.jwtTokenName = environment.jwtTokenKey;
-    this.localStorageUserKey = environment.localStorageUserKey;
-    this.jwtToken = localStorage.getItem(this.jwtTokenName);
-    this.tokenUser = JSON.parse(localStorage.getItem(this.localStorageUserKey));
   }
 
   register(formData: IRegistrationFormData): Observable<any> {

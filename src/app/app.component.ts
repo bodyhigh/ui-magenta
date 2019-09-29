@@ -10,7 +10,7 @@ import { AuthService } from './modules/auth/services/auth.service';
 export class AppComponent {
   title = 'ui-magenta';
 
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(private router: Router, public authService: AuthService) {}
 
   logout() {
     this.authService.logout();

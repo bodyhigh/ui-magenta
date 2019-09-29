@@ -1,5 +1,5 @@
 <div id="login-container">
-    <form [formGroup]="loginForm" (submit)="submit()">
+    <form [formGroup]="loginForm" formControlName="loginForm" (submit)="submit()">
         <mat-form-field>
         <input matInput placeholder="Email" formControlName="email" type="email">
         <mat-error *ngIf="formErrors.email">{{ formErrors.email }}</mat-error>

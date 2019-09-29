@@ -30,9 +30,13 @@ export class LowerCaseUrlSerializer extends DefaultUrlSerializer {
 }
 
 // JWT Config
+export function jwtTokenGetter() {
+  return localStorage.getItem(environment.jwtTokenKey)
+}
+
 const jwtConfig = {
   config: {
-    tokenGetter: () => localStorage.getItem(environment.jwtTokenKey),
+    tokenGetter: jwtTokenGetter,
     whitelistedDomains: environment.jwtWhitelistedDomains,
     blacklistedRoutes: environment.jwtBlacklistedRoutes
   }

@@ -23,20 +23,18 @@ export class UserService extends ApiBaseService{
     this.restApiEndpoint = `${environment.restApiEndpoint}/user`;
   }
 
-  list(itemsPerPage: number = 0, pageNumber: number = 25): Observable<any> {
+  list(itemsPerPage: number = 0, 
+      pageNumber: number = 25, 
+      sortFieldName = "lastName", 
+      sortDirection: string = 'asc',
+      searchTerm: string): Observable<any> {
     const endpoint = `${this.restApiEndpoint}/`;
     let params = new HttpParams()
       .set('itemsPerPage', itemsPerPage.toString())
       .set('pageNumber', pageNumber.toString())
+      .set('sortFieldName', sortFieldName)
+      .set('sortDirection', sortDirection)
+      .set('searchTerm', searchTerm)
     return this.httpClient.get<any>(endpoint, { params: params });
   }
 }
-// @Injectable({
-//   providedIn: 'root'
-// })
-// export class UserService {
-
-//   constructor(private httpClient: HttpClient,
-//               private jwtHelper: JwtHelperService,
-//               private logger: LoggerService) { }
-// }

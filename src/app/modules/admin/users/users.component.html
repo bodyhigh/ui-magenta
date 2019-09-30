@@ -1,40 +1,38 @@
+<mat-form-field>
+  <!-- <input matInput placeholder="Search Filter" (keyup)="searchFilterKeyUp($event.target.value)"> -->
+  <input matInput placeholder="Search Filter" #searchFilter >
+</mat-form-field>
+
 <div class="example-container mat-elevation-z8">
     <div class="example-loading-shade"
-         *ngIf="isLoadingResults || isRateLimitReached">
+         *ngIf="isLoadingResults">
       <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
-      <div class="example-rate-limit-reached" *ngIf="isRateLimitReached">
+      <!-- <div class="example-rate-limit-reached" *ngIf="isRateLimitReached">
         GitHub's API rate limit has been reached. It will be reset in one minute.
-      </div>
+      </div> -->
     </div>
-  
+
     <div class="example-table-container">
-  
       <table mat-table [dataSource]="data" class="example-table"
-             matSort matSortActive="created" matSortDisableClear matSortDirection="desc">
-        <!-- Number Column -->
+             matSort matSortActive="lastName" matSortDirection="asc" >
         <ng-container matColumnDef="firstName">
-          <th mat-header-cell *matHeaderCellDef>First Name</th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>First Name</th>
           <td mat-cell *matCellDef="let row">{{row.firstName}}</td>
         </ng-container>
   
-        <!-- Title Column -->
         <ng-container matColumnDef="lastName">
-          <th mat-header-cell *matHeaderCellDef>Last Name</th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>Last Name</th>
           <td mat-cell *matCellDef="let row">{{row.lastName}}</td>
         </ng-container>
-  
-        State Column
-        <ng-container matColumnDef="state">
-          <th mat-header-cell *matHeaderCellDef>State</th>
-          <td mat-cell *matCellDef="let row">{{row.state}}</td>
+
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>Email</th>
+          <td mat-cell *matCellDef="let row">{{row.email}}</td>
         </ng-container>
   
-        <!-- Created Column -->
-        <ng-container matColumnDef="created">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
-            Created
-          </th>
-          <td mat-cell *matCellDef="let row">{{row.created_at | date}}</td>
+        <ng-container matColumnDef="accountStatus">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+          <td mat-cell *matCellDef="let row">{{row.accountStatus}}</td>
         </ng-container>
   
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

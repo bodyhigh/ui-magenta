@@ -37,4 +37,9 @@ export class UserService extends ApiBaseService{
       .set('searchTerm', searchTerm)
     return this.httpClient.get<any>(endpoint, { params: params });
   }
+
+  getById(id: string): Observable<IUser> {
+    const endpoint = `${this.restApiEndpoint}/${id}`;
+    return this.httpClient.get<IUser>(endpoint);
+  }
 }

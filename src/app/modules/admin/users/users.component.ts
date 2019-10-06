@@ -5,6 +5,7 @@ import { IUser } from 'src/app/models/interfaces/iuser';
 import {merge, of as observableOf, fromEvent, Observable} from 'rxjs';
 import {catchError, map, startWith, switchMap, filter, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-users',
@@ -14,24 +15,21 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class UsersComponent implements AfterViewInit {
   private snackRef: MatSnackBarRef<SimpleSnackBar>;
 
-  public displayedColumns: string[] = ['firstName', 'lastName', 'email', 'accountStatus'];
+  public displayedColumns: string[] = ['firstName', 'lastName', 'email', 'accountStatus', 'actions'];
   public data: IUser[] = [];
   public resultsLength = 0;
   public isLoadingResults = true;
-  // public isRateLimitReached = false;
   public itemsPerPage = 4;
   private $searchFilter: Observable<any>;
-  // private searchTerm: string = "";
-  // private searchTermEmitter: EventEmitter<string> = new EventEmitter<string>();
-
-  // @ViewChild(MatInput, { static: false }) searchFilter: MatInput;
   @ViewChild("searchFilter", { static: false }) searchFilter: ElementRef;
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
 
   constructor(private userService: UserService,
               private sanitizer: DomSanitizer,
-              private snackBar: MatSnackBar) { }
+              private snackBar: MatSnackBar,
+              private router: Router,
+              private route: ActivatedRoute) { }
 
   ngAfterViewInit(): void {
     this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
@@ -41,7 +39,6 @@ export class UsersComponent implements AfterViewInit {
         map((event: any) => {
           return event.target.value;
         })
-        // ,filter(res => res.length > 2)
         ,debounceTime(1000)
         ,distinctUntilChanged()
       );
@@ -67,8 +64,9 @@ export class UsersComponent implements AfterViewInit {
           this.resultsLength = results.totalCount;
           return results.data;
         }),
-        catchError(() => {
+        catchError((err) => {
           this.isLoadingResults = false;
+          this.snackRef = this.snackBar.open(err.message, 'Close');
           // this.isRateLimitReached = true;
           return observableOf([]);
         })
@@ -77,5 +75,9 @@ export class UsersComponent implements AfterViewInit {
 
   sanitizeString(dirty: string): string {
     return dirty.trim().toLowerCase();
+  }
+
+  editUserClick(id: string) {
+    this.router.navigate(['../user-edit', id], { relativeTo: this.route });
   }
 }

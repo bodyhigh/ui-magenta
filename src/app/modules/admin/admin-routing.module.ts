@@ -4,6 +4,7 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { AdminComponent } from './admin/admin.component';
 import { AuthGuard } from '../auth/auth.guard';
 import { UsersComponent } from './users/users.component';
+import { UserEditComponent } from './user-edit/user-edit.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,10 @@ const routes: Routes = [
           {
             path: 'users',
             component: UsersComponent
+          },
+          {
+            path: 'user-edit/:userId',
+            component: UserEditComponent
           }
         ]
       }

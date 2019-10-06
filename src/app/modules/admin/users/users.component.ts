@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ViewChild, ElementRef, EventEmitter } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, ElementRef, EventEmitter, OnDestroy } from '@angular/core';
 import { UserService } from 'src/app/models/user.service';
 import { MatSnackBar, MatSnackBarRef, SimpleSnackBar, MatPaginator, MatSort, MatInput } from '@angular/material';
 import { IUser } from 'src/app/models/interfaces/iuser';
@@ -12,9 +12,8 @@ import { Router, ActivatedRoute } from '@angular/router';
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss']
 })
-export class UsersComponent implements AfterViewInit {
+export class UsersComponent implements AfterViewInit, OnDestroy {
   private snackRef: MatSnackBarRef<SimpleSnackBar>;
-
   public displayedColumns: string[] = ['firstName', 'lastName', 'email', 'accountStatus', 'actions'];
   public data: IUser[] = [];
   public resultsLength = 0;
@@ -29,7 +28,13 @@ export class UsersComponent implements AfterViewInit {
               private sanitizer: DomSanitizer,
               private snackBar: MatSnackBar,
               private router: Router,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute) { };
+
+  // TODO: need to unsubscribe to all subscriptions here
+  ngOnDestroy(): void {
+    
+    throw new Error("Method not implemented.");
+  }
 
   ngAfterViewInit(): void {
     this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);

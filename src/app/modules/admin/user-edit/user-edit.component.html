@@ -1,1 +1,28 @@
-<p>user-edit works!</p>
+<div class="user-container">
+    <form [formGroup]="formGroup" (submit)="submitClick()">
+        <mat-form-field>
+            <input matInput placeholder="First Name" formControlName="firstName">
+            <mat-error *ngIf="formErrors.firstName">{{ formErrors.firstName }}</mat-error>
+        </mat-form-field>
+        
+        <mat-form-field>
+            <input matInput placeholder="Last Name" formControlName="lastName">
+            <mat-error *ngIf="formErrors.lastName">{{ formErrors.lastName }}</mat-error>
+        </mat-form-field>
+    
+        <mat-form-field>
+            <input matInput placeholder="Email" formControlName="email" type="email">
+            <mat-error *ngIf="formErrors.email">{{ formErrors.email }}</mat-error>
+        </mat-form-field>
+
+        <!-- <mat-form-field> -->
+        <section>
+            <label class="checkbox-margin">Roles</label>
+            <mat-checkbox class="checkbox-margin" [checked]="roleChecked('admin')" (change)="roleChanged('admin')">Admin</mat-checkbox>
+            <mat-checkbox class="checkbox-margin" [checked]="roleChecked('user')" (change)="roleChanged('user')">User</mat-checkbox>
+        </section>
+            <!-- <mat-checkbox formControlName="roles"></mat-checkbox> -->
+        <!-- </mat-form-field> -->
+        TODO: Add Account Status
+    </form>            
+</div>

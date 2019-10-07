@@ -1,11 +1,10 @@
 import { Injectable, Injector } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
-import { tap, map } from 'rxjs/operators';
-import { IUser } from './interfaces/iuser';
+import { IUser, objToIUserMapper } from './interfaces/iuser';
 import { ApiBaseService } from './api-base.service';
 import { HttpParams } from '@angular/common/http';
-import { Resolve, ActivatedRoute, RouterState, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { map } from 'rxjs/internal/operators/map';
 
 /**
  * API Model for the User class
@@ -17,7 +16,7 @@ import { Resolve, ActivatedRoute, RouterState, ActivatedRouteSnapshot, RouterSta
 @Injectable({
   providedIn: 'root'
 })
-export class UserService extends ApiBaseService implements Resolve<IUser> {
+export class UserService extends ApiBaseService {
 
   constructor(injector: Injector) {
     super(injector);
@@ -41,15 +40,12 @@ export class UserService extends ApiBaseService implements Resolve<IUser> {
 
   getById(id: string): Observable<IUser> {
     const endpoint = `${this.restApiEndpoint}/${id}`;
-    return this.httpClient.get<IUser>(endpoint);
-      // .pipe(
-      //   map(data => data)
-      // );
-  }
-
-  resolve(route: ActivatedRouteSnapshot,
-          state: RouterStateSnapshot): Observable<IUser> {
-    const userId = route.paramMap.get('userId');
-    return this.getById(userId);
+    return this.httpClient.get<IUser>(endpoint)
+      .pipe(
+        map(user => objToIUserMapper(user))
+        // map(user => {
+        //   return this.userMapper(user);
+        // })
+      );
   }
 }

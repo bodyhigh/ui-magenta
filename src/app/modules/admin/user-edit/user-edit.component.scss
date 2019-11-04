@@ -2,13 +2,25 @@
 //     display: block;
 // }
 
-section {
+.checkbox-row {
     display: flex;
     align-content: center;
     align-items: center;
-    height: 60px;
+    // height: 60px;
  }
 
- .checkbox-margin {
+.checkbox-row label, 
+.checkbox-row mat-checkbox {
     margin: 0 10px;
 }
+
+.radioButton-row label,
+.radioButton-row mat-radio-button {
+    margin: 0 10px;
+}
+// .accountStatusRadioButton {
+//     display: flex;
+//     align-content: center;
+//     align-items: center;
+//     // height: 60px;
+//  }

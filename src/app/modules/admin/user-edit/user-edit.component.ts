@@ -1,10 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription, Subject } from 'rxjs';
 import { UserService } from 'src/app/models/user.service';
 import { IUser } from 'src/app/models/interfaces/iuser';
 import { takeUntil } from 'rxjs/operators';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormArray, FormControl } from '@angular/forms';
 import { FormValidationService } from 'src/app/services/form-validation.service';
 import { CustomValidatorService } from 'src/app/services/custom-validator.service';
 import { MatSnackBar, MatSnackBarRef, SimpleSnackBar } from '@angular/material';
@@ -23,11 +23,22 @@ export class UserEditComponent implements OnInit, OnDestroy {
   public formErrors = {
     firstName: '',
     lastName: '',
-    email: ''
+    email: '',
+    roles: '',
+    accountStatus: ''
   };
 
+  roles: string[];
+  // accountStatuses: string[] = ['Registered', 'Active', 'Disabled'];
+  accountStatusArray: Array<{ displayText: string, value: string }> = [
+    { displayText: 'Registered', value: 'Registered'},
+    { displayText: 'Active', value: 'Active'},
+    { displayText: 'Disabled', value: 'Disabled'}
+  ];
+
   constructor(private userService: UserService,
-              private route: ActivatedRoute, 
+              private router: Router,
+              private route: ActivatedRoute,
               private fb: FormBuilder,
               private formValidation: FormValidationService,
               private customValidator: CustomValidatorService,
@@ -41,16 +52,20 @@ export class UserEditComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.userId = this.route.snapshot.paramMap.get('userId');
     this.userData = this.route.snapshot.data.user;
-    console.log(this.userData);
-    
+    // console.log(this.userData);
     this.buildForm();
+    this.roles = Object.keys(this.formGroup.controls.roles.value);
+    // this.buildAccountStatusGroup();
   }
 
   buildForm() {
     this.formGroup = this.fb.group({
       firstName: [this.userData.firstName, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       lastName: [this.userData.lastName, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-      email: [this.userData.email, [Validators.required, Validators.email]]
+      email: [this.userData.email, [Validators.required, Validators.email]],
+      roles: this.buildRolesGroup(),
+      // accountStatus: new FormArray([])
+      accountStatus: ['', Validators.required]
     });
 
     this.formGroup.valueChanges
@@ -61,7 +76,32 @@ export class UserEditComponent implements OnInit, OnDestroy {
     );
   }
 
+  buildRolesGroup(): FormGroup {
+    return this.fb.group({
+      Admin: false,
+      User: false
+    });
+  }
+
+  buildAccountStatusGroup() {
+    // const accountStatusFormArray: FormArray = new FormArray([]);
+    // // this.accountStatuses.forEach((v, i) => {
+    // this.accountStatusArray.forEach((v, i) => {
+    //   const control = new FormControl(false);
+    //   (this.formGroup.controls.accountStatus as FormArray).push(control);
+    // });
+  }
+
+  //https://medium.com/@2bhere4u/angular-5-material-design-checkbox-array-reactive-forms-handle-3885dde366ca
+  updateCheckbox(item, isChecked) {
+    console.log(item);
+    console.log(isChecked);
+  }
+
   submitClick() {
+    console.log('SUBMIT!!!');
+    console.log(this.formErrors);
+    console.log(this.formGroup);
     if (this.snackRef !== undefined) { this.snackRef.dismiss(); }
     this.formValidation.markFormGroupTouched(this.formGroup);
 
@@ -89,16 +129,19 @@ export class UserEditComponent implements OnInit, OnDestroy {
   }
 
   roleChecked(role: string): boolean {
-    return this.userData.roles.indexOf(role.toLowerCase()) != -1;
+    return this.userData.roles.indexOf(role.toLowerCase()) !== -1;
   }
 
   roleChanged(role: string) {
     role = role.toLowerCase();
-    
     if (this.roleChecked(role)) {
       this.userData.roles.splice(this.userData.roles.indexOf(role), 1);
     } else {
       this.userData.roles.push(role);
     }
+  }
+
+  cancel() {
+    return this.router.navigate(['../../users'], { relativeTo: this.route });
   }
 }

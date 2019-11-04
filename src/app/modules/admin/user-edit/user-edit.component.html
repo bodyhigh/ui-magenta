@@ -16,13 +16,43 @@
         </mat-form-field>
 
         <!-- <mat-form-field> -->
-        <section>
+        <!-- <section>
             <label class="checkbox-margin">Roles</label>
             <mat-checkbox class="checkbox-margin" [checked]="roleChecked('admin')" (change)="roleChanged('admin')">Admin</mat-checkbox>
             <mat-checkbox class="checkbox-margin" [checked]="roleChecked('user')" (change)="roleChanged('user')">User</mat-checkbox>
+        </section> -->
+        
+        <section [formGroup]="formGroup.controls.roles" class="checkbox-row">
+            <label>Roles</label>
+            <mat-checkbox *ngFor="let role of roles" formControlName="{{ role }}">{{ role }}</mat-checkbox>
         </section>
-            <!-- <mat-checkbox formControlName="roles"></mat-checkbox> -->
+
+        <section class="radioButton-row">
+            <label id="accountStatusLabel">Account Status</label>
+            <mat-radio-group
+                aria-labelledby="accountStatusLabel"
+                class="accountStatusGroup"
+                formControlName="accountStatus">
+                <mat-radio-button 
+                    class="accountStatusRadioButton" 
+                    *ngFor="let accountStatus of accountStatusArray" 
+                    [checked]="accountStatus.value == 'Registered'"
+                    [value]="accountStatus.value">{{ accountStatus.displayText }}</mat-radio-button>
+            </mat-radio-group>
+            <!-- <mat-checkbox formArrayName="accountStatus" *ngFor="let status of formGroup.controls.accountStatus.controls" value="{{ status.value }}">{{ status.value }}</mat-checkbox> -->
+            <!-- <mat-checkbox formArrayName="accountStatus" *ngFor="let status of formGroup.controls.accountStatus.controls; let i = index" >{{ accountStatuses[i] }}</mat-checkbox> -->
+
+            <!-- <p *ngFor="let status of accountStatuses" formArrayName="accountStatus">
+                <mat-checkbox value="status" (change)="updateCheckbox(status, $event.checked)">{{ status }}</mat-checkbox>
+            </p> -->
+        </section>
+        <!-- <mat-checkbox formControlName="roles"></mat-checkbox> -->
         <!-- </mat-form-field> -->
         TODO: Add Account Status
+        <div class="button-row">
+            <button mat-raised-button (click)="cancel()" type="button">Cancel</button>
+            <button mat-raised-button color="primary" type="submit">Save</button>
+        </div>
     </form>            
 </div>
+<pre>{{ userData | json }}</pre>

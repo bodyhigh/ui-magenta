@@ -15,7 +15,8 @@ import { MatButtonModule,
   MatSortModule,
   MatTableModule,
   MatToolbarModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatRadioModule
   
 } from '@angular/material';
 
@@ -34,6 +35,7 @@ import { MatButtonModule,
     MatMenuModule,
     MatPaginatorModule,
     MatProgressSpinnerModule,
+    MatRadioModule,
     MatSidenavModule,
     MatSnackBarModule,
     MatSortModule,
@@ -51,6 +53,7 @@ import { MatButtonModule,
     MatMenuModule,
     MatPaginatorModule,
     MatProgressSpinnerModule,
+    MatRadioModule,
     MatSidenavModule,
     MatSnackBarModule,
     MatSortModule,

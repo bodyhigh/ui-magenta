@@ -16,13 +16,7 @@ import { MatButtonModule,
   MatSortModule,
   MatTableModule,
   MatToolbarModule,
-<<<<<<< HEAD
-  MatCheckboxModule,
-  MatRadioModule
-  
-=======
   MatCheckboxModule
->>>>>>> 2c8d3940ff1bcc01458b2c615c0238fbb37e0b35
 } from '@angular/material';
 
 

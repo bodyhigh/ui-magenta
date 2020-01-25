@@ -31,16 +31,6 @@ export class UserEditComponent implements OnInit, OnDestroy {
     lastName: '',
     email: '',
     roles: '',
-<<<<<<< HEAD
-    accountStatuses: ''
-  };
-  private roles: string[] = ['admin', 'user'];
-  private accountStatuses: string[] = ['registered', 'active', 'disabled'];
-  
-  constructor(private userService: UserService,
-              private router: Router,
-              private route: ActivatedRoute, 
-=======
     accountStatus: ''
   };
 
@@ -55,7 +45,6 @@ export class UserEditComponent implements OnInit, OnDestroy {
   constructor(private userService: UserService,
               private router: Router,
               private route: ActivatedRoute,
->>>>>>> 2c8d3940ff1bcc01458b2c615c0238fbb37e0b35
               private fb: FormBuilder,
               private formValidation: FormValidationService,
               private customValidator: CustomValidatorService,
@@ -75,13 +64,13 @@ export class UserEditComponent implements OnInit, OnDestroy {
     // this.buildAccountStatusGroup();
   }
 
-  buildRolesGroup(roles: string[]): FormArray {
-    return this.fb.array(roles.map(role => {
-      return this.fb.group({ id: role, name: role, selected: false });
-      // return this.fb.control({ id: role, name: role, selected: false });
-      // return new FormControl(false);
-    }));
-  }
+  // buildRolesGroup(roles: string[]): FormArray {
+  //   return this.fb.array(roles.map(role => {
+  //     return this.fb.group({ id: role, name: role, selected: false });
+  //     // return this.fb.control({ id: role, name: role, selected: false });
+  //     // return new FormControl(false);
+  //   }));
+  // }
 
   buildAccountStatusGroup(statuses: string[]): FormArray {
     return this.fb.array(statuses.map(status => {
@@ -94,16 +83,9 @@ export class UserEditComponent implements OnInit, OnDestroy {
       firstName: [this.userData.firstName, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       lastName: [this.userData.lastName, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       email: [this.userData.email, [Validators.required, Validators.email]],
-<<<<<<< HEAD
-      // roles: [[], [Validators.required, Validators.minLength(1)]],
-      roles: this.buildRolesGroup(this.roles),
-      accountStatuses: this.buildAccountStatusGroup(this.accountStatuses)
-      // accountStatus: [this.userData.accountStatus, [Validators.required]]
-=======
       roles: this.buildRolesGroup(),
       // accountStatus: new FormArray([])
       accountStatus: ['', Validators.required]
->>>>>>> 2c8d3940ff1bcc01458b2c615c0238fbb37e0b35
     });
 
     console.log(this.formGroup);
@@ -123,14 +105,14 @@ export class UserEditComponent implements OnInit, OnDestroy {
     });
   }
 
-  buildAccountStatusGroup() {
-    // const accountStatusFormArray: FormArray = new FormArray([]);
-    // // this.accountStatuses.forEach((v, i) => {
-    // this.accountStatusArray.forEach((v, i) => {
-    //   const control = new FormControl(false);
-    //   (this.formGroup.controls.accountStatus as FormArray).push(control);
-    // });
-  }
+  // buildAccountStatusGroup() {
+  //   // const accountStatusFormArray: FormArray = new FormArray([]);
+  //   // // this.accountStatuses.forEach((v, i) => {
+  //   // this.accountStatusArray.forEach((v, i) => {
+  //   //   const control = new FormControl(false);
+  //   //   (this.formGroup.controls.accountStatus as FormArray).push(control);
+  //   // });
+  // }
 
   //https://medium.com/@2bhere4u/angular-5-material-design-checkbox-array-reactive-forms-handle-3885dde366ca
   updateCheckbox(item, isChecked) {
@@ -139,14 +121,9 @@ export class UserEditComponent implements OnInit, OnDestroy {
   }
 
   submitClick() {
-<<<<<<< HEAD
-    console.log("start submit");
-
-=======
     console.log('SUBMIT!!!');
     console.log(this.formErrors);
     console.log(this.formGroup);
->>>>>>> 2c8d3940ff1bcc01458b2c615c0238fbb37e0b35
     if (this.snackRef !== undefined) { this.snackRef.dismiss(); }
     this.formValidation.markFormGroupTouched(this.formGroup);
 
@@ -189,11 +166,7 @@ export class UserEditComponent implements OnInit, OnDestroy {
   }
 
   cancel() {
-<<<<<<< HEAD
-    // this.router.navigate(['../users'], { relativeTo: this.route });
-    this.router.navigate(['/admin/users']);
-=======
+    //this.router.navigate(['/admin/users']);
     return this.router.navigate(['../../users'], { relativeTo: this.route });
->>>>>>> 2c8d3940ff1bcc01458b2c615c0238fbb37e0b35
   }
 }

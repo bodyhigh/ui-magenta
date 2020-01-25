@@ -16,38 +16,6 @@
         </mat-form-field>
 
         <!-- <mat-form-field> -->
-<<<<<<< HEAD
-        <section>
-            <label id="roles-label" class="checkbox-margin">Roles</label>
-            <div formArrayName="roles">
-                <div *ngFor="let role of formGroup.controls.roles.controls" [formGroup]="role">
-                    <mat-checkbox [formControl]="role.get('selected')">{{ role.get('name').value }}</mat-checkbox>
-                </div>
-
-            </div>
-            <!-- <label id="roles-label" class="checkbox-margin">Roles</label>
-            <mat-checkbox class="checkbox-margin" [checked]="roleChecked('admin')" (change)="roleChanged('admin')">Admin</mat-checkbox>
-            <mat-checkbox class="checkbox-margin" [checked]="roleChecked('user')" (change)="roleChanged('user')">User</mat-checkbox> -->
-        </section>
-            
-        <section>
-            <div formArrayName="accountStatuses">
-                <div *ngFor="let accountStatus of accountStatuses.controls" [formGroup]="accountStatus">
-                    {{ accountStatus }}
-                    <!-- <mat-checkbox [formControl]="accountStatus.get('selected')">{{ accountStatus.get('name').value }}</mat-checkbox> -->
-                </div>
-
-            </div>
-            <!-- <label id="accountStatus-label" class="checkbox-margin">Account Status</label>
-            <mat-radio-group formControlName="accountStatus" aria-labelledby="accountStatus-label" class="checkbox-margin">
-                <mat-radio-button value="registered" class="checkbox-margin">registered</mat-radio-button>
-                <mat-radio-button value="active" class="checkbox-margin">active</mat-radio-button>                
-                <mat-radio-button value="disabled" class="checkbox-margin">disabled</mat-radio-button>
-                <mat-error *ngIf="formErrors.accountStatus">{{ formErrors.accountStatus }}</mat-error>
-            </mat-radio-group> -->
-        </section>
-        
-=======
         <!-- <section>
             <label class="checkbox-margin">Roles</label>
             <mat-checkbox class="checkbox-margin" [checked]="roleChecked('admin')" (change)="roleChanged('admin')">Admin</mat-checkbox>
@@ -81,21 +49,10 @@
         <!-- <mat-checkbox formControlName="roles"></mat-checkbox> -->
         <!-- </mat-form-field> -->
         TODO: Add Account Status
->>>>>>> 2c8d3940ff1bcc01458b2c615c0238fbb37e0b35
         <div class="button-row">
             <button mat-raised-button (click)="cancel()" type="button">Cancel</button>
             <button mat-raised-button color="primary" type="submit">Save</button>
         </div>
-<<<<<<< HEAD
-
-        <div>
-            ROLES:
-            <pre>{{ formGroup.controls.roles.controls }}</pre>
-            ERRORS:
-            <pre>{{formErrors | json }}</pre>
-        </div>
-=======
->>>>>>> 2c8d3940ff1bcc01458b2c615c0238fbb37e0b35
     </form>            
 </div>
 <pre>{{ userData | json }}</pre>

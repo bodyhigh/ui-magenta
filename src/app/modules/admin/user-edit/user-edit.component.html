@@ -1,0 +1,38 @@
+<div class="user-container">
+    <form [formGroup]="formGroup" (submit)="submitClick()">
+        <mat-form-field>
+            <input matInput placeholder="First Name" formControlName="firstName">
+            <mat-error *ngIf="formErrors.firstName">{{ formErrors.firstName }}</mat-error>
+        </mat-form-field>
+        
+        <mat-form-field>
+            <input matInput placeholder="Last Name" formControlName="lastName">
+            <mat-error *ngIf="formErrors.lastName">{{ formErrors.lastName }}</mat-error>
+        </mat-form-field>
+    
+        <mat-form-field>
+            <input matInput placeholder="Email" formControlName="email" type="email">
+            <mat-error *ngIf="formErrors.email">{{ formErrors.email }}</mat-error>
+        </mat-form-field>
+
+        
+        <section [formGroup]="formGroup.controls.roles" class="checkbox-row">
+            <label>Roles</label>
+            <mat-checkbox *ngFor="let role of roles" formControlName="{{ role }}">{{ role }}</mat-checkbox>
+        </section>
+
+        <section class="radioButton-row">
+            <label id="accountStatusLabel">Account Status</label>
+            <mat-radio-group formControlName="accountStatus">
+                <mat-radio-button *ngFor="let accountStatus of accountStatuses" value="{{accountStatus.toLowerCase()}}">{{accountStatus}}</mat-radio-button>
+            </mat-radio-group>
+        </section>
+
+        <div class="button-row">
+            <button mat-raised-button (click)="cancel()" type="button">Cancel</button>
+            <button mat-raised-button color="primary" type="submit">Save</button>
+        </div>
+
+        <div><pre>{{ formErrors | json }}</pre></div>
+    </form>            
+</div>

@@ -1,20 +1,30 @@
 /* Navigation link styles */
+nav {
+  // padding-bottom: 0;
+  border-bottom: #607D8B 5px solid;
+  // border-spacing: 25px;
+  margin-bottom: 15px;
+}
+
 nav a {
-    padding: 5px 10px;
-    text-decoration: none;
-    margin-right: 10px;
-    margin-top: 10px;
-    display: inline-block;
-    background-color: #eee;
-    border-radius: 4px;
-  }
-  nav a:visited, a:link {
-    color: #607D8B;
-  }
-  nav a:hover {
-    color: #039be5;
-    background-color: #CFD8DC;
-  }
-  nav a.active {
-    color: #039be5;
-  }
+  padding: 5px 10px;
+  text-decoration: none;
+  margin-right: 10px;
+  margin-top: 10px;
+  display: inline-block;
+  background-color: #eee;
+  border-radius: 4px;
+}
+
+nav a:visited, a:link {
+  color: #607D8B;
+}
+
+nav a:hover {
+  color: #039be5;
+  background-color: #CFD8DC;
+}
+
+nav a.active {
+  color: #039be5;
+}

@@ -15,14 +15,24 @@
             <mat-error *ngIf="formErrors.email">{{ formErrors.email }}</mat-error>
         </mat-form-field>
 
-        <!-- <mat-form-field> -->
-        <section>
-            <label class="checkbox-margin">Roles</label>
-            <mat-checkbox class="checkbox-margin" [checked]="roleChecked('admin')" (change)="roleChanged('admin')">Admin</mat-checkbox>
-            <mat-checkbox class="checkbox-margin" [checked]="roleChecked('user')" (change)="roleChanged('user')">User</mat-checkbox>
+        
+        <section [formGroup]="formGroup.controls.roles" class="checkbox-row">
+            <label>Roles</label>
+            <mat-checkbox *ngFor="let role of roles" formControlName="{{ role }}">{{ role }}</mat-checkbox>
         </section>
-            <!-- <mat-checkbox formControlName="roles"></mat-checkbox> -->
-        <!-- </mat-form-field> -->
-        TODO: Add Account Status
+
+        <section class="radioButton-row">
+            <label id="accountStatusLabel">Account Status</label>
+            <mat-radio-group formControlName="accountStatus">
+                <mat-radio-button *ngFor="let accountStatus of accountStatuses" value="{{accountStatus.toLowerCase()}}">{{accountStatus}}</mat-radio-button>
+            </mat-radio-group>
+        </section>
+
+        <div class="button-row">
+            <button mat-raised-button (click)="cancel()" type="button">Cancel</button>
+            <button mat-raised-button color="primary" type="submit">Save</button>
+        </div>
+
+        <div><pre>{{ formErrors | json }}</pre></div>
     </form>            
 </div>

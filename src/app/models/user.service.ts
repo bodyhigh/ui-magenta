@@ -5,6 +5,7 @@ import { IUser, objToIUserMapper } from './interfaces/iuser';
 import { ApiBaseService } from './api-base.service';
 import { HttpParams } from '@angular/common/http';
 import { map } from 'rxjs/internal/operators/map';
+import { IUserEdit } from '../modules/admin/interfaces/iuseredit';
 
 /**
  * API Model for the User class
@@ -47,5 +48,14 @@ export class UserService extends ApiBaseService {
         //   return this.userMapper(user);
         // })
       );
+  }
+
+  updateUserEdit(userData: IUserEdit): Observable<any> {
+    const endpoint = `${this.restApiEndpoint}/userProfile/${userData.id}`;
+    console.log("sending userData: ");
+    console.log(userData);
+    
+    
+    return this.httpClient.patch(endpoint, userData);
   }
 }

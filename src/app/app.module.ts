@@ -12,12 +12,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Modules
 import { AdminModule } from './modules/admin/admin.module';
+import { AuthModule } from './modules/auth/auth.module';
+import { UserDashboardModule } from './modules/user-dashboard/user-dashboard.module';
 
 // Common Material Modules
 import { CommonMaterialsModule } from './modules/common-materials/common-materials.module';
 
+// Components
 import { HomeComponent } from './home/home.component';
-import { AuthModule } from './modules/auth/auth.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 /**
@@ -58,7 +60,8 @@ const jwtConfig = {
     AuthModule,
     AppRoutingModule,
     AdminModule,
-    CommonMaterialsModule
+    CommonMaterialsModule,
+    UserDashboardModule
   ],
   providers: [{
     provide: UrlSerializer,

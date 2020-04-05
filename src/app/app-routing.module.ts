@@ -2,11 +2,16 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { UserDashboardComponent } from './modules/user-dashboard/user-dashboard/user-dashboard.component';
 
 const routes: Routes = [
   {
     path: 'admin',
     loadChildren: () => import('./modules/admin/admin.module').then(mod => mod.AdminModule)
+  },
+  {
+    path: 'user-dashboard',
+    component: UserDashboardComponent
   },
   {
     path: '',

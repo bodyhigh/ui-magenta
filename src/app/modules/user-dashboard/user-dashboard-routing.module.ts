@@ -1,17 +1,34 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
+import { CreateComponent } from '../art/create/create.component';
+import { ViewCollectionComponent } from '../art/view-collection/view-collection.component';
+import { ViewContactsComponent } from '../contacts/view-contacts/view-contacts.component';
 
 const routes: Routes = [
     {
-        path: '',
-        component: UserDashboardComponent//,
-        // children: [
-        //     {
-        //         path: '',
-        //     }
-        // ]
-    }
+        path: 'user-dashboard',
+        component: UserDashboardComponent,
+        children: [
+            {
+                path: 'art-create',
+                component: CreateComponent
+            },
+            {
+                path: 'view-collection',
+                component: ViewCollectionComponent
+            },
+            {
+                path: 'view-contacts',
+                component: ViewContactsComponent
+            }
+        ]
+    }//,
+
+    // {
+    //     path: '**',
+    //     component: CreateComponent
+    // }
 ];
 
 @NgModule({

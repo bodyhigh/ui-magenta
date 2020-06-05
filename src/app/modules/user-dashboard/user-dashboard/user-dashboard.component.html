@@ -1,17 +1,18 @@
-
-    <button mat-raised-button color="primary">
+<nav>
+    <a mat-raised-button routerLink='./art-create' routerLinkActive="active" color="primary">
         <mat-icon aria-hidden="false" aria-label="Add New Item">add_circle</mat-icon>
         Add New Item
-    </button>
-
-
-    <button mat-raised-button color="primary">
+    </a>
+        
+    <a mat-raised-button routerLink='./view-collection' routerLinkActive="active" color="primary">
         <mat-icon aria-hidden="false" aria-label="View Collection">dynamic_feed</mat-icon>
         View Collection
-    </button>
-
-    <button mat-raised-button color="primary">
+    </a>
+    
+    <a mat-raised-button routerLink='./view-contacts' routerLinkActive="active" color="primary">
         <mat-icon aria-hidden="false" aria-label="View Contacts">contacts</mat-icon>
         View Contacts
-    </button>
+    </a>
+</nav>
 
+<router-outlet></router-outlet>

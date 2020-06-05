@@ -1,0 +1,11 @@
+<div id="art-item-container">
+    <form [formGroup]="formGroup" (submit)="submitClick()" class="art-item-form">
+        <mat-form-field class="input-full-width">
+            <input matInput placeholder="Title" formControlName="title">
+        </mat-form-field>
+
+        <mat-form-field class="input-full-width">
+            <textarea matInput placeholder="Description"></textarea>
+        </mat-form-field>
+    </form>
+</div>

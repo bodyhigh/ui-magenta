@@ -4,11 +4,13 @@ import { UserDashboardComponent } from './user-dashboard/user-dashboard.componen
 import { CreateComponent } from '../art/create/create.component';
 import { ViewCollectionComponent } from '../art/view-collection/view-collection.component';
 import { ViewContactsComponent } from '../contacts/view-contacts/view-contacts.component';
+import { AuthGuard } from '../auth/auth.guard';
 
 const routes: Routes = [
     {
         path: 'user-dashboard',
         component: UserDashboardComponent,
+        canActivate: [AuthGuard],
         children: [
             {
                 path: 'art-create',

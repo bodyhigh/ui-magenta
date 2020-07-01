@@ -1,1 +1,21 @@
 <p>view-collection works!</p>
+<div *ngIf="artworkCollection.length == 0; then thenBlock else elseBlock"></div>
+<ng-template #thenBlock>
+    <h1>Empty Collection</h1>
+</ng-template>
+
+<ng-template #elseBlock>
+    <div *ngFor="let artworkItem of artworkCollection; index as i">
+        <mat-card class="art-card">
+            <mat-card-header class="art-card-header">
+                <mat-card-title>{{artworkItem.title}}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <p>{{artworkItem.description}}</p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-stroked-button color="accent" (click)="edit(artworkItem)">Edit</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</ng-template>

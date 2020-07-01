@@ -3,15 +3,15 @@ import { MatSnackBar, MatSnackBarRef, SimpleSnackBar } from '@angular/material';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { FormValidationService } from 'src/app/services/form-validation.service';
-import { IArtCreate } from '../iartcreate';
+import { IArtCreate } from '../interfaces/iartcreate';
 import { ArtService } from 'src/app/models/art.service';
 import { HttpErrorResponse } from '@angular/common/http';
 
-interface IArtItem {
-  id?: string;
-  title: string;
-  description: string;
-}
+// interface IArtItem {
+//   id?: string;
+//   title: string;
+//   description: string;
+// }
 
 @Component({
   selector: 'app-create',
@@ -21,7 +21,7 @@ interface IArtItem {
 export class CreateComponent implements OnInit, OnDestroy {
   private unsubscribe$ = new Subject<void>();
   private snackRef: MatSnackBarRef<SimpleSnackBar>;
-  private artData: IArtItem;
+  private artData: IArtCreate;
   public formGroup: FormGroup;
   public formErrors = {
     title: '',
@@ -39,6 +39,7 @@ export class CreateComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
+    if (this.snackRef !== undefined) { this.snackRef.dismiss(); }
   }
 
   ngOnInit() {

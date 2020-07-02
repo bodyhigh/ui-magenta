@@ -5,6 +5,8 @@ import { CreateComponent } from '../art/create/create.component';
 import { ViewCollectionComponent } from '../art/view-collection/view-collection.component';
 import { ViewContactsComponent } from '../contacts/view-contacts/view-contacts.component';
 import { UserGuard } from './guards/user.guard';
+import { EditComponent } from '../art/edit/edit.component';
+import { ArtResolver } from 'src/app/models/resolvers/artwork.resolver';
 
 const routes: Routes = [
     {
@@ -23,6 +25,11 @@ const routes: Routes = [
             {
                 path: 'view-contacts',
                 component: ViewContactsComponent
+            },
+            {
+                path: 'art-edit/:id',
+                component: EditComponent,
+                resolve: { artwork: ArtResolver }
             }
         ]
     }//,

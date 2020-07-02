@@ -1,21 +1,27 @@
-<p>view-collection works!</p>
-<div *ngIf="artworkCollection.length == 0; then thenBlock else elseBlock"></div>
-<ng-template #thenBlock>
-    <h1>Empty Collection</h1>
-</ng-template>
-
-<ng-template #elseBlock>
-    <div *ngFor="let artworkItem of artworkCollection; index as i">
-        <mat-card class="art-card">
-            <mat-card-header class="art-card-header">
-                <mat-card-title>{{artworkItem.title}}</mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-                <p>{{artworkItem.description}}</p>
-            </mat-card-content>
-            <mat-card-actions>
-                <button mat-stroked-button color="accent" (click)="edit(artworkItem)">Edit</button>
-            </mat-card-actions>
-        </mat-card>
-    </div>
-</ng-template>
+<ng-container *ngIf="!isLoadingResults">
+    <div *ngIf="artworkCollection.length == 0; then thenBlock else elseBlock"></div>
+    <ng-template #thenBlock>
+        <h1>Empty Collection</h1>
+    </ng-template>
+    
+    <ng-template #elseBlock>
+        <div *ngFor="let artworkItem of artworkCollection; index as i">
+            <mat-card class="art-card">
+                <mat-card-header class="art-card-header">
+                    <mat-card-title>{{artworkItem.title}}</mat-card-title>
+                    <mat-card-subtitle>{{artworkItem.description}}</mat-card-subtitle>
+                </mat-card-header>
+                <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->                
+                <mat-card-content>
+                    <b>ID: {{artworkItem._id}}</b>
+                    <p>{{artworkItem.description}}</p>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-stroked-button color="accent" (click)="edit(artworkItem)">Edit</button>
+                    <button mat-stroked-button color="warn" (click)="edit(artworkItem)">Delete</button>
+                </mat-card-actions>
+                <!-- <mat-card-footer>Footer</mat-card-footer> -->
+            </mat-card>
+        </div>
+    </ng-template>
+</ng-container>

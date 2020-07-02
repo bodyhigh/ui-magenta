@@ -4,8 +4,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { FormValidationService } from 'src/app/services/form-validation.service';
 import { IArtCreate } from '../interfaces/iartcreate';
-import { ArtService } from 'src/app/models/art.service';
+import { ArtworkService } from 'src/app/models/artwork.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Router, ActivatedRoute } from '@angular/router';
 
 // interface IArtItem {
 //   id?: string;
@@ -33,7 +34,9 @@ export class CreateComponent implements OnInit, OnDestroy {
     private snackbar: MatSnackBar,
     private fb: FormBuilder,
     private formValidation: FormValidationService,
-    private artworkService: ArtService
+    private artworkService: ArtworkService,
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   ngOnDestroy(): void {
@@ -77,14 +80,15 @@ export class CreateComponent implements OnInit, OnDestroy {
       this.artworkService.create(formData)
       .subscribe((res:any) => {
         this.snackRef = this.snackbar.open('Record Saved', 'Close');
+        this.router.navigate(['../view-collection'], { relativeTo: this.route });
       }, 
       (err: HttpErrorResponse) => {
         const snackError = err.statusText.length != 0 ? err.statusText : err.error.errors.map(e => e.description).join('');
         this.snackRef = this.snackbar.open(snackError, 'Close');
       });
 
-      console.log("Form is valid");
-      console.log(formData);
+      // console.log("Form is valid");
+      // console.log(formData);
     }
   }
 

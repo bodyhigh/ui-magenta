@@ -1,8 +1,9 @@
 import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
-import { ArtService } from 'src/app/models/art.service';
+import { ArtworkService } from 'src/app/models/artwork.service';
 import { IArtworkCollectionItem } from '../interfaces/iartwork-collection-item';
 import {merge, of as observableOf, fromEvent, Observable, Subscription} from 'rxjs';
 import {catchError, map, startWith, switchMap, filter, debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-view-collection',
@@ -15,7 +16,9 @@ export class ViewCollectionComponent implements AfterViewInit, OnDestroy {
   public isLoadingResults = true;
 
   constructor(
-    private artworkService: ArtService
+    private artworkService: ArtworkService,
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   ngOnDestroy(): void {
@@ -43,14 +46,15 @@ export class ViewCollectionComponent implements AfterViewInit, OnDestroy {
       )
       .subscribe(data => {
         this.artworkCollection = data
-        console.log(this.artworkCollection);
+        // console.log(this.artworkCollection);
       })
     );
     
   }
 
   edit(artworkItem: IArtworkCollectionItem): void {
-    console.log(artworkItem);
+    // console.log(artworkItem);
+    this.router.navigate(['../art-edit/', artworkItem._id], { relativeTo: this.route });
   }
 
 }

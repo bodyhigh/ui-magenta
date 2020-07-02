@@ -15,6 +15,8 @@ export class UserGuard implements CanActivate, CanActivateChild, CanLoad {
       if (!this.authService.isLoggedIn()) {
         this.router.navigate(['/login'], { queryParams: { returnUrl: state.url }});
       }
+
+      console.log()
     return this.authService.isUserRole();
   }
   canActivateChild(

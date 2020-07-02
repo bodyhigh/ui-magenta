@@ -6,10 +6,11 @@ import { CommonMaterialsModule } from '../common-materials/common-materials.modu
 import { ArtRoutingModule } from './art-routing.module';
 import { CreateComponent } from './create/create.component';
 import { ViewCollectionComponent } from './view-collection/view-collection.component';
+import { EditComponent } from './edit/edit.component';
 
 
 @NgModule({
-  declarations: [CreateComponent, ViewCollectionComponent],
+  declarations: [CreateComponent, ViewCollectionComponent, EditComponent],
   imports: [
     CommonModule,
     ArtRoutingModule,

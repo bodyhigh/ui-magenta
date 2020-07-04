@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
-import { CreateComponent } from '../art/create/create.component';
-import { ViewCollectionComponent } from '../art/view-collection/view-collection.component';
+import { ArtworkCreateComponent } from '../artwork/artwork-create/artwork-create.component';
+import { ViewCollectionComponent } from '../artwork/view-collection/view-collection.component';
 import { ViewContactsComponent } from '../contacts/view-contacts/view-contacts.component';
 import { UserGuard } from './guards/user.guard';
-import { EditComponent } from '../art/edit/edit.component';
+import { ArtworkEditComponent } from '../artwork/artwork-edit/artwork-edit.component';
 import { ArtResolver } from 'src/app/models/resolvers/artwork.resolver';
 
 const routes: Routes = [
@@ -16,7 +16,7 @@ const routes: Routes = [
         children: [
             {
                 path: 'art-create',
-                component: CreateComponent
+                component: ArtworkCreateComponent
             },
             {
                 path: 'view-collection',
@@ -28,7 +28,7 @@ const routes: Routes = [
             },
             {
                 path: 'art-edit/:id',
-                component: EditComponent,
+                component: ArtworkEditComponent,
                 resolve: { artwork: ArtResolver }
             }
         ]

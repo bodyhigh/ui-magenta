@@ -7,19 +7,14 @@ import { IArtCreate } from '../interfaces/iartcreate';
 import { ArtworkService } from 'src/app/models/artwork.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
-
-// interface IArtItem {
-//   id?: string;
-//   title: string;
-//   description: string;
-// }
+import { Location } from '@angular/common';
 
 @Component({
-  selector: 'app-create',
-  templateUrl: './create.component.html',
-  styleUrls: ['./create.component.scss']
+  selector: 'app-artwork-create',
+  templateUrl: './artwork-create.component.html',
+  styleUrls: ['./artwork-create.component.scss']
 })
-export class CreateComponent implements OnInit, OnDestroy {
+export class ArtworkCreateComponent implements OnInit, OnDestroy {
   private unsubscribe$ = new Subject<void>();
   private snackRef: MatSnackBarRef<SimpleSnackBar>;
   private artData: IArtCreate;
@@ -36,7 +31,8 @@ export class CreateComponent implements OnInit, OnDestroy {
     private formValidation: FormValidationService,
     private artworkService: ArtworkService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private location: Location
   ) { }
 
   ngOnDestroy(): void {
@@ -58,19 +54,16 @@ export class CreateComponent implements OnInit, OnDestroy {
   }
 
   cancel() {
-    console.log("Cancel this action");
+    this.location.back();
   }
 
   submitClick() {
-    console.log("Submit this form.");
-
     if (this.snackRef !== undefined) { this.snackRef.dismiss(); }
 
     this.formValidation.markFormGroupTouched(this.formGroup);
 
     if (!this.formGroup.valid) {
       this.formValidation.validateForm(this.formGroup, this.formErrors, false)
-      console.log("Form is not valid");
     } else {
       const formData: IArtCreate = {
         title: this.formGroup.get("title").value,
@@ -80,7 +73,7 @@ export class CreateComponent implements OnInit, OnDestroy {
       this.artworkService.create(formData)
       .subscribe((res:any) => {
         this.snackRef = this.snackbar.open('Record Saved', 'Close');
-        this.router.navigate(['../view-collection'], { relativeTo: this.route });
+        this.router.navigate(['/user-dashboard/view-collection']);
       }, 
       (err: HttpErrorResponse) => {
         const snackError = err.statusText.length != 0 ? err.statusText : err.error.errors.map(e => e.description).join('');

@@ -1,10 +1,10 @@
 import { Injectable, Injector } from '@angular/core';
 import { ApiBaseService } from './api-base.service';
 import { environment } from 'src/environments/environment';
-import { IArtCreate } from '../modules/art/interfaces/iartcreate';
+import { IArtCreate } from '../modules/artwork/interfaces/iartcreate';
 import { Observable } from 'rxjs';
-import { IArtworkCollectionItem } from '../modules/art/interfaces/iartwork-collection-item';
-import { IArtworkEdit } from '../modules/art/interfaces/iartwork-edit';
+import { IArtworkCollectionItem } from '../modules/artwork/interfaces/iartwork-collection-item';
+import { IArtworkEdit } from '../modules/artwork/interfaces/iartwork-edit';
 
 /**
  *
@@ -34,5 +34,10 @@ export class ArtworkService extends ApiBaseService {
 
   getById(id): Observable<IArtworkEdit> {
     return this.httpClient.get<IArtworkEdit>(`${this.restApiEndpoint}/${id}`);
+  }
+
+  update(artRecord: IArtworkEdit): Observable<IArtworkEdit> {
+    const endpoint = `${this.restApiEndpoint}/${artRecord._id}`;
+    return this.httpClient.patch<IArtworkEdit>(endpoint, artRecord);
   }
 }

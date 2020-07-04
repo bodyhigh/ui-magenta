@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { IArtworkEdit } from 'src/app/modules/art/interfaces/iartwork-edit';
+import { IArtworkEdit } from 'src/app/modules/artwork/interfaces/iartwork-edit';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { ArtworkService } from '../artwork.service';
 

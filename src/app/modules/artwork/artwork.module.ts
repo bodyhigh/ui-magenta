@@ -3,22 +3,23 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { CommonMaterialsModule } from '../common-materials/common-materials.module';
-import { ArtRoutingModule } from './art-routing.module';
-import { CreateComponent } from './create/create.component';
+import { ArtworkRoutingModule } from './artwork-routing.module';
+import { ArtworkCreateComponent } from './artwork-create/artwork-create.component';
 import { ViewCollectionComponent } from './view-collection/view-collection.component';
-import { EditComponent } from './edit/edit.component';
+import { ArtworkEditComponent } from './artwork-edit/artwork-edit.component';
 
 
 @NgModule({
-  declarations: [CreateComponent, ViewCollectionComponent, EditComponent],
+  declarations: [ArtworkCreateComponent, ViewCollectionComponent, ArtworkEditComponent],
   imports: [
     CommonModule,
-    ArtRoutingModule,
+    ArtworkRoutingModule,
     ReactiveFormsModule,
     CommonMaterialsModule
   ],
   exports: [
-    CreateComponent
+    ArtworkCreateComponent,
+    ArtworkEditComponent
   ]
 })
-export class ArtModule { }
+export class ArtworkModule { }

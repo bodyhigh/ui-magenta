@@ -1,0 +1,20 @@
+<div id="art-item-container">
+    <form [formGroup]="formGroup" (submit)="submitClick()" class="art-item-form">
+        <mat-form-field class="input-full-width">
+            <input matInput placeholder="Title" formControlName="title">
+            <mat-error *ngIf="formErrors.title">{{ formErrors.title }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="input-full-width">
+            <textarea matInput placeholder="Description" formControlName="description"></textarea>
+            <mat-error *ngIf="formErrors.description">{{ formErrors.description }}</mat-error>
+        </mat-form-field>
+
+        <div class="button-row">
+            <button mat-raised-button (click)="cancel()" type="button">Cancel</button>
+            <button mat-raised-button color="primary" type="submit">Save</button>
+        </div>
+
+        <div><pre>{{ formErrors | json }}</pre></div>
+    </form>
+</div>

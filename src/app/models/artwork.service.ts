@@ -2,9 +2,11 @@ import { Injectable, Injector } from '@angular/core';
 import { ApiBaseService } from './api-base.service';
 import { environment } from 'src/environments/environment';
 import { IArtCreate } from '../modules/artwork/interfaces/iartcreate';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { IArtworkCollectionItem } from '../modules/artwork/interfaces/iartwork-collection-item';
 import { IArtworkEdit } from '../modules/artwork/interfaces/iartwork-edit';
+import { catchError } from 'rxjs/operators';
+import { HttpErrorResponse, HttpParams, HttpRequest } from '@angular/common/http';
 
 /**
  *
@@ -39,5 +41,16 @@ export class ArtworkService extends ApiBaseService {
   update(artRecord: IArtworkEdit): Observable<IArtworkEdit> {
     const endpoint = `${this.restApiEndpoint}/${artRecord._id}`;
     return this.httpClient.patch<IArtworkEdit>(endpoint, artRecord);
+  }
+
+  delete(artworkId: string): Observable<any> {
+    const endpoint = `${this.restApiEndpoint}/${artworkId}`;
+    return this.httpClient.delete<any>(endpoint)
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          console.log(error);
+          return throwError(error);
+        })
+      );
   }
 }

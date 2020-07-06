@@ -43,7 +43,6 @@ export class ArtworkEditComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.artworkRecord = this.route.snapshot.data.artwork;
-    // console.log(this.artworkRecord);
     this.buildForm();
   }
 

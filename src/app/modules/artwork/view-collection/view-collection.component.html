@@ -8,8 +8,8 @@
         <div *ngFor="let artworkItem of artworkCollection; index as i">
             <mat-card class="art-card">
                 <mat-card-header class="art-card-header">
-                    <mat-card-title>{{artworkItem.title}}</mat-card-title>
-                    <mat-card-subtitle>{{artworkItem.description}}</mat-card-subtitle>
+                    <mat-card-title>{{ artworkItem.title }}</mat-card-title>
+                    <mat-card-subtitle>{{ artworkItem.description }}</mat-card-subtitle>
                 </mat-card-header>
                 <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->                
                 <mat-card-content>
@@ -18,7 +18,7 @@
                 </mat-card-content>
                 <mat-card-actions>
                     <button mat-stroked-button color="accent" (click)="edit(artworkItem)">Edit</button>
-                    <button mat-stroked-button color="warn" (click)="edit(artworkItem)">Delete</button>
+                    <button mat-stroked-button color="warn" (click)="delete(artworkItem)">Delete</button>
                 </mat-card-actions>
                 <!-- <mat-card-footer>Footer</mat-card-footer> -->
             </mat-card>

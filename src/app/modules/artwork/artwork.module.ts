@@ -7,10 +7,12 @@ import { ArtworkRoutingModule } from './artwork-routing.module';
 import { ArtworkCreateComponent } from './artwork-create/artwork-create.component';
 import { ViewCollectionComponent } from './view-collection/view-collection.component';
 import { ArtworkEditComponent } from './artwork-edit/artwork-edit.component';
-
+import { SafeHtmlPipe } from 'src/app/pipes/safe-html.pipe';
+import { UnescapePipe } from 'src/app/pipes/unescape.pipe';
+import { ArtworkDeleteDialogComponent } from './artwork-delete-dialog/artwork-delete-dialog.component';
 
 @NgModule({
-  declarations: [ArtworkCreateComponent, ViewCollectionComponent, ArtworkEditComponent],
+  declarations: [ArtworkCreateComponent, ViewCollectionComponent, ArtworkEditComponent, SafeHtmlPipe, UnescapePipe, ArtworkDeleteDialogComponent],
   imports: [
     CommonModule,
     ArtworkRoutingModule,
@@ -19,7 +21,9 @@ import { ArtworkEditComponent } from './artwork-edit/artwork-edit.component';
   ],
   exports: [
     ArtworkCreateComponent,
-    ArtworkEditComponent
-  ]
+    ArtworkEditComponent,
+    ArtworkDeleteDialogComponent
+  ],
+  entryComponents: [ArtworkDeleteDialogComponent]
 })
 export class ArtworkModule { }

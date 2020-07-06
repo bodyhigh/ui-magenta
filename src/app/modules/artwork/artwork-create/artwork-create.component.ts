@@ -49,7 +49,7 @@ export class ArtworkCreateComponent implements OnInit, OnDestroy {
   buildForm() {
     this.formGroup = this.fb.group({
       title: [ this.artData.title, [Validators.required, Validators.minLength(3), Validators.maxLength(150)]],
-      description: [ this.artData.description, [Validators.required, Validators.minLength(3)]]
+      description: [ this.artData.description, [Validators.minLength(3)]]
     });
   }
 

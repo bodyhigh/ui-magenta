@@ -12,7 +12,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Modules
 import { AdminModule } from './modules/admin/admin.module';
+import { ArtworkModule } from './modules/artwork/artwork.module';
 import { AuthModule } from './modules/auth/auth.module';
+import { ContactsModule } from './modules/contacts/contacts.module';
 import { UserDashboardModule } from './modules/user-dashboard/user-dashboard.module';
 
 // Common Material Modules
@@ -57,10 +59,12 @@ const jwtConfig = {
     HttpClientModule,
     JwtModule.forRoot(jwtConfig),
     // Modules
-    AuthModule,
-    AppRoutingModule,
     AdminModule,
+    AppRoutingModule,
+    ArtworkModule,
+    AuthModule,
     CommonMaterialsModule,
+    ContactsModule,
     UserDashboardModule
   ],
   providers: [{

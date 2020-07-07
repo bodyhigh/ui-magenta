@@ -5,16 +5,15 @@
         <mat-icon>home</mat-icon>
         <span>Home</span>
       </a>
-      
-      <a mat-list-item routerLink="/user-dashboard" (click)="start.close()">
-        <mat-icon>apps</mat-icon>
-        <span>Dashboard</span>
-      </a>
 
       <ng-container *ngIf="authService.isLoggedIn()">
         <a mat-list-item routerLink="/profile" (click)="start.close()">
           <mat-icon>face</mat-icon>
           <span>Profile</span>
+        </a>
+        <a mat-list-item routerLink="/user-dashboard" (click)="start.close()">
+          <mat-icon>apps</mat-icon>
+          <span>Dashboard</span>
         </a>
         <a mat-list-item routerLink="/admin" (click)="start.close()">
           <mat-icon>settings_applications</mat-icon>

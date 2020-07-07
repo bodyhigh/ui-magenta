@@ -16,7 +16,8 @@ import { MatButtonModule,
   MatSortModule,
   MatTableModule,
   MatToolbarModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatDialogModule
 } from '@angular/material';
 
 
@@ -27,6 +28,7 @@ import { MatButtonModule,
     MatButtonModule,
     MatCardModule,
     MatCheckboxModule,
+    MatDialogModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
@@ -45,6 +47,7 @@ import { MatButtonModule,
     MatButtonModule,
     MatCardModule,
     MatCheckboxModule,
+    MatDialogModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,

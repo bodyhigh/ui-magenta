@@ -6,22 +6,19 @@ import { UserDashboardComponent } from './modules/user-dashboard/user-dashboard/
 
 const routes: Routes = [
   {
-    path: 'admin',
-    loadChildren: () => import('./modules/admin/admin.module').then(mod => mod.AdminModule)
-  },
-  {
-    path: 'user-dashboard',
-    component: UserDashboardComponent
-  },
-  {
     path: '',
     pathMatch: 'full',
     component: HomeComponent
   },
   {
-    path: '**',
-    component: PageNotFoundComponent
+    path: 'admin',
+    loadChildren: () => import('./modules/admin/admin.module').then(mod => mod.AdminModule)
   }
+  //,
+  // {
+  //   path: '**',
+  //   component: PageNotFoundComponent
+  // }
 ];
 
 @NgModule({

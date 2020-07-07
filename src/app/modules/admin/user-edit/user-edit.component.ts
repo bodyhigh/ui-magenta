@@ -55,15 +55,13 @@ export class UserEditComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
+    if (this.snackRef !== undefined) { this.snackRef.dismiss(); }
   }
 
   ngOnInit() {
     this.userId = this.route.snapshot.paramMap.get('userId');
     this.userData = this.route.snapshot.data.user;
-    this.buildForm();
-    // this.roles = Object.keys(this.formGroup.controls.roles.value);
-    console.log(this.userData);
-    
+    this.buildForm();    
   }
 
   buildForm() {
@@ -72,11 +70,8 @@ export class UserEditComponent implements OnInit, OnDestroy {
       lastName: [this.userData.lastName, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       email: [this.userData.email, [Validators.required, Validators.email]],
       roles: this.buildRolesGroup(),
-      // roles: ['user'],
       accountStatus: [this.userData.accountStatus, Validators.required]
     });
-
-    console.log(this.formGroup);
 
     this.formGroup.valueChanges
       .pipe(takeUntil(this.unsubscribe$))
@@ -86,8 +81,7 @@ export class UserEditComponent implements OnInit, OnDestroy {
     );
   }
 
-  buildRolesGroup(): FormGroup {
-    
+  buildRolesGroup(): FormGroup {    
     return this.fb.group({
       Admin: this.userData.roles.includes('admin'),
       User: this.userData.roles.includes('user')
@@ -104,9 +98,7 @@ export class UserEditComponent implements OnInit, OnDestroy {
     return Object.keys(fgRoles).filter(key => fgRoles[key]).map(str => str.toLowerCase());
   }
 
-  submitClick() {
-    console.log('SUBMIT!!!');
-
+  submitClick() { 
     if (this.snackRef !== undefined) { this.snackRef.dismiss(); }
     this.formValidation.markFormGroupTouched(this.formGroup);
 
@@ -122,37 +114,17 @@ export class UserEditComponent implements OnInit, OnDestroy {
         accountStatus: this.formGroup.get("accountStatus").value
       };
 
-      // console.log(formData);
-      
-      // this.userService.getById(3);
-
       this.userService.updateUserEdit(formData)
       .subscribe(
           (res: any) => {
             this.snackRef = this.snackbar.open('Record Saved', 'Close');
-            // console.log("Saved successfully");            
-              // this.registrationConfirmed = true;
           },
-          (err: HttpErrorResponse) => {
-              // console.log(err);              
+          (err: HttpErrorResponse) => {             
               const snackError = err.statusText.length != 0 ? err.statusText : err.error.errors.map(e => e.description).join('');
               this.snackRef = this.snackbar.open(snackError, 'Close');
           }
       );
-      // this.subscriptions.push(this.authService.register(formData)
-      // .subscribe(
-      //     (res: IRegistrationFormData) => {
-      //         this.registrationConfirmed = true;
-      //     },
-      //     (err: HttpErrorResponse) => {
-      //         const snackError = err.error.errors.map(e => e.description).join('');
-      //         this.snackRef = this.snackbar.open(snackError, 'Close');
-      //     }
-      // ));
-
     }
-
-    console.log("end submit");
   }
 
   roleChecked(role: string): boolean {

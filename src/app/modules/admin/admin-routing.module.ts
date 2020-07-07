@@ -9,7 +9,7 @@ import { UserResolver } from '../../models/user.resolver';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'admin',
     component: AdminComponent,
     canActivate: [AuthGuard],
     children: [

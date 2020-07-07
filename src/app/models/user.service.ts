@@ -52,10 +52,8 @@ export class UserService extends ApiBaseService {
 
   updateUserEdit(userData: IUserEdit): Observable<any> {
     const endpoint = `${this.restApiEndpoint}/userProfile/${userData.id}`;
-    console.log("sending userData: ");
-    console.log(userData);
-    
-    
+    // console.log("sending userData: ");
+    // console.log(userData);
     return this.httpClient.patch(endpoint, userData);
   }
 }

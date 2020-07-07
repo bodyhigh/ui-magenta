@@ -86,10 +86,4 @@ export class ViewCollectionComponent implements AfterViewInit, OnDestroy, OnInit
     });
   }
 
-}
-
-@Component({
-  selector: 'delete-dialog',
-  templateUrl: '../artwork-delete-dialog/artwork-delete-dialog.component.html'
-})
-export class DeleteDialog {}
+};

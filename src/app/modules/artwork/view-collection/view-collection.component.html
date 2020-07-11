@@ -1,27 +1,39 @@
-<ng-container *ngIf="!isLoadingResults">
-    <div *ngIf="artworkCollection.length == 0; then thenBlock else elseBlock"></div>
-    <ng-template #thenBlock>
-        <h1>Empty Collection</h1>
-    </ng-template>
-    
-    <ng-template #elseBlock>
-        <div *ngFor="let artworkItem of artworkCollection; index as i">
-            <mat-card class="art-card">
-                <mat-card-header class="art-card-header">
-                    <mat-card-title>{{ artworkItem.title }}</mat-card-title>
-                    <mat-card-subtitle>{{ artworkItem.description }}</mat-card-subtitle>
-                </mat-card-header>
-                <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->                
-                <mat-card-content>
-                    <b>ID: {{artworkItem._id}}</b>
-                    <p>{{artworkItem.description}}</p>
-                </mat-card-content>
-                <mat-card-actions>
-                    <button mat-stroked-button color="accent" (click)="edit(artworkItem)">Edit</button>
-                    <button mat-stroked-button color="warn" (click)="delete(artworkItem)">Delete</button>
-                </mat-card-actions>
-                <!-- <mat-card-footer>Footer</mat-card-footer> -->
-            </mat-card>
+<!-- <ng-container *ngIf="!isLoadingResults"> -->
+<div class="full-width-content mat-elevation-z8">    
+    <mat-form-field class="search-filter">
+        <input matInput #searchFilter placeholder="Search Filter">
+    </mat-form-field>
+
+    <div class="search-component-container">
+        <div class="loading-indicator" *ngIf="isLoadingResults">                
+                <mat-spinner></mat-spinner>                
         </div>
-    </ng-template>
-</ng-container>
+
+        <div class="search-results-table">    
+            <table mat-table [dataSource]="artworkCollection" matSort matSortActive="title" matSortDirection="asc">
+                <ng-container matColumnDef="title">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Title</th>
+                    <td mat-cell *matCellDef="let row">{{ row.title }}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="description">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
+                    <td mat-cell *matCellDef="let row">{{ row.description }}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="actions">
+                    <th mat-header-cell *matHeaderCellDef></th>
+                    <td mat-cell *matCellDef="let row" class="action-buttons">
+                        <button mat-raised-button color="primary" (click)="edit(row)" aria-label="Edit Record"><mat-icon>edit</mat-icon></button>
+                        <button mat-raised-button color="warn" (click)="delete(row)" aria-label="Delete Record"><mat-icon>delete</mat-icon></button>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </div>
+        <mat-paginator [length]="totalResultsCount" [pageSize]="itemsPerPage"></mat-paginator>
+    </div> <!-- search-component-container -->
+</div>
+<!-- </ng-container> -->

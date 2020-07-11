@@ -79,33 +79,6 @@ export class UsersComponent implements AfterViewInit, OnDestroy {
         })
       ).subscribe(data => this.data = data)
     );
-
-    // merge(this.sort.sortChange, this.paginator.page, this.searchFilter$)
-    //   .pipe(
-    //     startWith({}),
-    //     switchMap(() => {
-    //       this.isLoadingResults = true;
-    //       return this.userService.list(this.itemsPerPage,
-    //                                    this.paginator.pageIndex,
-    //                                    this.sort.active,
-    //                                    this.sort.direction,
-    //                                    this.sanitizeString(this.searchFilter.nativeElement.value));
-    //     }),
-    //     map(results => {
-    //       results = JSON.parse(results);
-    //       // Flip flag to show that loading has finished
-    //       this.isLoadingResults = false;
-    //       // this.isRateLimitReached = false;
-    //       this.resultsLength = results.totalCount;
-    //       return results.data;
-    //     }),
-    //     catchError((err) => {
-    //       this.isLoadingResults = false;
-    //       this.snackRef = this.snackBar.open(err.message, 'Close');
-    //       // this.isRateLimitReached = true;
-    //       return observableOf([]);
-    //     })
-    //   ).subscribe(data => this.data = data);
   }
 
   sanitizeString(dirty: string): string {

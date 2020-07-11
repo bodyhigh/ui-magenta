@@ -53,4 +53,20 @@ export class ArtworkService extends ApiBaseService {
         })
       );
   }
+
+  list( itemsPerPage: number = 25,
+        pageNumber: number = 0,
+        sortFieldName: string = 'title',
+        sortDirection: string = 'asc',
+        searchTerm: string
+        ): Observable<any> {
+          const params = new HttpParams()
+            .set('itemsPerPage', itemsPerPage.toString())
+            .set('pageNumber', pageNumber.toString())
+            .set('sortFieldName', sortFieldName)
+            .set('sortDirection', sortDirection)
+            .set('searchTerm', searchTerm)
+
+          return this.httpClient.get<any>(this.restApiEndpoint, { params });
+        }
 }
